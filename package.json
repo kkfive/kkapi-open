@@ -1,8 +1,8 @@
 {
-  "name": "nest-api",
+  "name": "circle-of-friends-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "mongoDB版，友链朋友圈爬虫自建API",
+  "author": "DreamyTZK",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

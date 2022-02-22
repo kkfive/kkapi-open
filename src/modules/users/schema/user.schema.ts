@@ -8,8 +8,6 @@ export class User extends mongoose.Document {
   userName: string; // 用户名
   @Prop()
   nickName: string; // 昵称
-  @Prop()
-  realName: string; // 真实姓名
 
   @Prop()
   avatar: string; // 头像
@@ -29,26 +27,11 @@ export class User extends mongoose.Document {
   @Prop({ default: '/dashboard/analysis' })
   homePath: string; // 首页路径
 
-  @Prop()
-  remark: string; // 备注
-
   @Prop({ default: '0' })
   status: string; // 状态
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'RolesList' })
-  role: mongoose.Schema.Types.ObjectId;
-
-  @Prop({ type: [String] })
-  permCode: string[];
-
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Departments' })
-  deptId: mongoose.Schema.Types.ObjectId;
-
   @Prop({ default: '', type: String })
   speakToken: string;
-
-  @Prop({ default: '' })
-  giteeId: string;
 
   @Prop({ default: '' })
   githubId: string;

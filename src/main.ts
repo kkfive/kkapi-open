@@ -1,4 +1,4 @@
-import * as rateLimit from 'express-rate-limit';
+import rateLimit from 'express-rate-limit';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { TransformInterceptor } from './interceptor/transform.interceptor';
 import { NestFactory } from '@nestjs/core';

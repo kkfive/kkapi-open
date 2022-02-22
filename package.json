@@ -1,7 +1,7 @@
 {
-  "name": "circle-of-friends-api",
+  "name": "kkapi-api-open",
   "version": "0.0.1",
-  "description": "mongoDB版，友链朋友圈爬虫自建API",
+  "description": "api服务",
   "author": "DreamyTZK",
   "private": true,
   "license": "UNLICENSED",

@@ -59,4 +59,15 @@ export class UserController {
     };
     return new SuccessModal(res, '登录成功');
   }
+
+  @Get('getUserInfo')
+  async getUserInfo(@Request() req): Promise<SuccessModal> {
+    const user = await this.userService.findOne({ _id: req.user.userId });
+
+    const res = {
+      token: req.headers.authorization,
+      ...user.toObject(),
+    };
+    return new SuccessModal(res);
+  }
 }

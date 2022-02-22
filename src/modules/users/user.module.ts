@@ -6,7 +6,7 @@ import { UserSchema, User } from './schema/user.schema';
 import { AuthModule } from 'src/modules/auth/auth.module';
 import { HttpModule } from '@nestjs/axios';
 import { OauthService } from './services/oauth.service';
-import { ModelName } from 'src/constant/model-name';
+import { UserModelName } from 'src/constant/model-name';
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { ModelName } from 'src/constant/model-name';
     forwardRef(() => AuthModule),
     //这里添加配置。对应引入模块（注意里面的括号结构别给坑了。这里我卡了半天）
     MongooseModule.forFeature([
-      { name: ModelName.User, schema: UserSchema, collection: ModelName.User },
+      { name: UserModelName.User, schema: UserSchema, collection: UserModelName.User },
     ]),
   ],
   controllers: [UserController],

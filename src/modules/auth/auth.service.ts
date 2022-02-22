@@ -12,9 +12,7 @@ export class AuthService {
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
-    const user = await (
-      await this.usersService.findOne({ userName: username, status: '0' }, true)
-    )?.toObject();
+    const user = await (await this.usersService.findOne({ userName: username }, true))?.toObject();
 
     if (user && bcryptValidate(pass, user.password)) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

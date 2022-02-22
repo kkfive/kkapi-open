@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 
-export type UserDocument = User & Document;
 @Schema()
 export class User extends mongoose.Document {
   @Prop()
@@ -39,5 +38,5 @@ export class User extends mongoose.Document {
   @Prop({ default: Date.now() })
   createTime: Date;
 }
-
+export type UserDocument = User & mongoose.Document;
 export const UserSchema = SchemaFactory.createForClass(User);

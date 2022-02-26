@@ -108,4 +108,8 @@ export class IspeakService {
   async findOneAndDelete(findOptions: mongoose.RootQuerySelector<IspeakDocument>) {
     return this.IspeakModel.findOneAndRemove(findOptions);
   }
+
+  async findOne(findOption: mongoose.RootQuerySelector<IspeakDocument>) {
+    return this.IspeakModel.find(findOption);
+  }
 }

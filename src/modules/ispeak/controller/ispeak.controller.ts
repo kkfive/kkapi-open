@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Request } from '@nestjs/common';
 import { isValidObjectId } from 'mongoose';
 import { IsLogin, NoAuth } from 'src/common/decorator/customize';
+import { TokenName } from 'src/constant/token-name';
 import { ErrorModal, SuccessModal } from 'src/Model/Response.modal';
-import { AuthService } from 'src/modules/auth/auth.service';
-import { UserService } from 'src/modules/users/services/user.service';
+import { TokenService } from 'src/modules/users/services/token.service';
 import { Ispeak } from '../schema/ispeak.schema';
 import { IspeakService } from '../service/ispeak.service';
 
@@ -11,7 +11,7 @@ import { IspeakService } from '../service/ispeak.service';
 export class IspeakController {
   constructor(
     private readonly ispeakService: IspeakService,
-    private readonly userService: UserService,
+    private readonly tokenService: TokenService,
   ) {}
 
   @IsLogin()
@@ -39,7 +39,7 @@ export class IspeakController {
       items: [],
     };
     result.forEach((res) => {
-      returnObj.total = res.total ? res.total[0].total : 0;
+      returnObj.total = res.total ? res.total[0]?.total : 0;
       res.items.forEach((item) => {
         item.author = item.author
           ? {
@@ -127,9 +127,9 @@ export class IspeakController {
   @NoAuth()
   @Post('/addByToken')
   async addOneSpeakByToken(@Body() body: Ispeak) {
-    const { title, content, type, tag } = body;
+    const { title, content, type, tag, showComment } = body;
     const token = body['token'];
-    const user = await this.userService.findOne({ speakToken: token });
+    const user = await this.tokenService.getOneToken({ title: TokenName.Speak, value: token });
     if (!user) return new ErrorModal(null, '此token不存在');
     if (!isValidObjectId(tag)) return new ErrorModal(null, '请传入标签的id');
     const result = await this.ispeakService.addOneSpeak({
@@ -137,7 +137,8 @@ export class IspeakController {
       content,
       type,
       tag,
-      author: user._id,
+      showComment,
+      author: user.user,
     });
     return new SuccessModal(result);
   }
@@ -145,8 +146,8 @@ export class IspeakController {
   @Patch('/update')
   async updateSpeak(@Body() body, @Request() req) {
     // eslint-disable-next-line prefer-const
-    let { _id, author, ...updateData } = body;
-    const updateAuthor = author || req.user.userId;
+    let { _id, ...updateData } = body;
+    const updateAuthor = req.user.userId;
 
     const res = await this.ispeakService.findOneAndUpdate(
       { _id, author: updateAuthor },
@@ -167,8 +168,8 @@ export class IspeakController {
   @Patch('/status/')
   async updateSpeakStatus(@Body() body, @Request() req) {
     // eslint-disable-next-line prefer-const
-    let { _id, author, showComment } = body;
-    const updateAuthor = author || req.user.userId;
+    let { _id, showComment } = body;
+    const updateAuthor = req.user.userId;
     const result = await this.ispeakService.findOneAndUpdate(
       { _id, author: updateAuthor },
       { showComment },
@@ -189,5 +190,11 @@ export class IspeakController {
     if (!param.id || !isValidObjectId(param?.id)) return new ErrorModal(null, 'id不合法');
     const res = await this.ispeakService.findOneAndDelete({ _id: param.id });
     return new SuccessModal(res);
+  }
+
+  @Get('/get/:id')
+  async getOneSpeak1(@Param() param) {
+    const res = await this.ispeakService.findOne({ _id: param.id });
+    return new SuccessModal(res.length ? res[0] : []);
   }
 }

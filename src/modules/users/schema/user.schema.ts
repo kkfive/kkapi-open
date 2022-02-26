@@ -3,21 +3,21 @@ import * as mongoose from 'mongoose';
 
 @Schema()
 export class User extends mongoose.Document {
-  @Prop()
+  @Prop({ default: '' })
   userName: string; // 用户名
-  @Prop()
+  @Prop({ default: '' })
   nickName: string; // 昵称
 
-  @Prop()
+  @Prop({ default: '' })
   avatar: string; // 头像
 
-  @Prop()
+  @Prop({ default: '' })
   desc: string; // 描述
 
-  @Prop()
+  @Prop({ default: '' })
   link: string; // 个人链接
 
-  @Prop()
+  @Prop({ default: '' })
   email: string; // 邮箱
 
   @Prop({ select: false, default: '$2a$10$TVk79hQVVpmfu2BOupaIl.lw80Wlwvnpwl0oOjjLH180fi16F9p0K' })

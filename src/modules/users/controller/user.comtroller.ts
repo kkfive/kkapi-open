@@ -1,12 +1,22 @@
 import { HttpService } from '@nestjs/axios';
-import { Controller, Get, Logger, Post, Query, Request, UseGuards, Body } from '@nestjs/common';
-import { UserService } from './services/user.service';
+import {
+  Controller,
+  Get,
+  Logger,
+  Post,
+  Query,
+  Request,
+  UseGuards,
+  Body,
+  Patch,
+} from '@nestjs/common';
+import { UserService } from '../services/user.service';
 import { ErrorModal, SuccessModal } from 'src/Model/Response.modal';
 import { LocalAuthGuard } from 'src/modules/auth/guards/local-auth.guard';
 import { AuthService } from 'src/modules/auth/auth.service';
-import { OauthService } from './services/oauth.service';
+import { OauthService } from '../services/oauth.service';
 import { NoAuth } from 'src/common/decorator/customize';
-import { User } from './schema/user.schema';
+import { User } from '../schema/user.schema';
 
 @Controller('/user')
 export class UserController {
@@ -69,5 +79,30 @@ export class UserController {
       ...user.toObject(),
     };
     return new SuccessModal(res);
+  }
+  @Patch('update')
+  async updateUserInfo(@Body() body, @Request() req) {
+    const { avatar, desc, email, homePath, link, nickName, userName } = body;
+    const result = await this.userService.updateOne(
+      { _id: req.user.userId },
+      {
+        avatar,
+        desc,
+        email,
+        homePath,
+        link,
+        nickName,
+        userName,
+      },
+    );
+    if (result.acknowledged && result.modifiedCount === 1) {
+      return new SuccessModal(result, '更新成功');
+    } else {
+      if (result.matchedCount === 0) {
+        return new ErrorModal(result, '没有找到对应用户');
+      } else {
+        return new ErrorModal(result, '更新失败');
+      }
+    }
   }
 }

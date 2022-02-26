@@ -63,10 +63,11 @@ export class IspeakTagController {
 
   @Post('/add')
   async addTag(@Body() body, @Request() req): Promise<SuccessModal | ErrorModal> {
-    let userId = req.user.userId;
-    if (body.userId) {
-      userId = body.userId;
-    }
+    const userId = req.user.userId;
+    if (!userId) return new ErrorModal(null, '请先登录');
+    // if (body.userId) {
+    //   userId = body.userId;
+    // }
 
     if (body.name) {
       const tag = await this.ispeakService.findOneTag({
@@ -80,6 +81,8 @@ export class IspeakTagController {
       } else {
         const res = await this.ispeakService.createOneTag(body.name, body.bgColor, {
           user: userId,
+          orderNo: body.orderNo || 0,
+          description: body.description || '',
         });
         return new SuccessModal(res);
       }

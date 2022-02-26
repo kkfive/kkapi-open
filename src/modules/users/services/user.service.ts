@@ -39,4 +39,8 @@ export class UserService {
   async deleteOne(deleteOptions) {
     return this.userModel.deleteOne(deleteOptions);
   }
+
+  async updateOne(findOptions, updateOptions) {
+    return this.userModel.updateOne(findOptions, updateOptions);
+  }
 }

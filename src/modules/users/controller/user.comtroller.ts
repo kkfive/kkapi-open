@@ -17,6 +17,7 @@ import { AuthService } from 'src/modules/auth/auth.service';
 import { OauthService } from '../services/oauth.service';
 import { NoAuth } from 'src/common/decorator/customize';
 import { User } from '../schema/user.schema';
+import { bcryptEncript, bcryptValidate } from 'src/common/encription';
 
 @Controller('/user')
 export class UserController {
@@ -103,6 +104,28 @@ export class UserController {
       } else {
         return new ErrorModal(result, '更新失败');
       }
+    }
+  }
+  @Patch('password')
+  async changePassword(@Request() req, @Body() body): Promise<SuccessModal | ErrorModal> {
+    let { password } = body;
+    const id = req.user.userId;
+    const user = await this.userService.findOne({ _id: id }, true);
+    const { oldPassword, rpassword } = body;
+
+    if (password !== rpassword) {
+      return new ErrorModal(null, '两次密码不一致');
+    }
+    password = bcryptEncript(password);
+    if (!bcryptValidate(oldPassword, user.password)) {
+      return new ErrorModal(null, '旧密码不匹配');
+    }
+
+    const res = await this.userService.updateOne({ _id: req.user.userId }, { password });
+    if (res.acknowledged && res.modifiedCount === 1) {
+      return new SuccessModal('修改成功');
+    } else {
+      return new ErrorModal(null, '修改失败');
     }
   }
 }

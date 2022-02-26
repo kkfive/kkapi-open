@@ -23,7 +23,7 @@ export class User extends mongoose.Document {
   @Prop({ select: false, default: '$2a$10$TVk79hQVVpmfu2BOupaIl.lw80Wlwvnpwl0oOjjLH180fi16F9p0K' })
   password: string; // 密码
 
-  @Prop({ default: '/dashboard/analysis' })
+  @Prop({ default: '/about/index' })
   homePath: string; // 首页路径
 
   @Prop({ default: '0' })

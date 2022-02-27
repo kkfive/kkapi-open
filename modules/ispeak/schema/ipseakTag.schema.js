@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IspeakTagSchema = exports.IspeakTag = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const class_validator_1 = require("class-validator");
 const mongoose = require("mongoose");
 const model_name_1 = require("../../../constant/model-name");
 let IspeakTag = class IspeakTag {
@@ -22,6 +23,7 @@ let IspeakTag = class IspeakTag {
     createAt;
 };
 __decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: '标签名称为必填项' }),
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], IspeakTag.prototype, "name", void 0);

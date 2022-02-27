@@ -11,7 +11,7 @@ export declare class UserController {
     constructor(userService: UserService, authService: AuthService, httpService: HttpService, oauthService: OauthService);
     getUserList(): Promise<SuccessModal>;
     userGetId(req: any): Promise<SuccessModal>;
-    initUser(body: any, req: any): Promise<SuccessModal | ErrorModal>;
+    initUser(body: any, query: any, req: any): Promise<SuccessModal | ErrorModal>;
     login(body: any, req: any): Promise<SuccessModal>;
     getUserInfo(req: any): Promise<SuccessModal>;
     updateUserInfo(body: any, req: any): Promise<SuccessModal | ErrorModal>;

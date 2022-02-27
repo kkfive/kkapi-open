@@ -42,6 +42,7 @@ jobs:
         run: |
           yarn run build
           node deploy.js
+          cp package.json ./dist/
 
       - name: 6. 推送到vercel分支
         uses: peaceiris/actions-gh-pages@v3

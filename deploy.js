@@ -16,6 +16,4 @@ const setting = {
     },
   ],
 };
-const packageJson = fs.readFileSync('package.json');
 fs.writeFileSync('./dist/vercel.json', JSON.stringify(setting));
-fs.writeFileSync('./dist/package.json', JSON.stringify(packageJson));

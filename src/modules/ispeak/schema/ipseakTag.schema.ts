@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IsNotEmpty } from 'class-validator';
 import * as mongoose from 'mongoose';
 import { UserModelName } from 'src/constant/model-name';
 
@@ -9,6 +10,7 @@ export class IspeakTag {
   /**
    * 标签名称
    */
+  @IsNotEmpty({ message: '标签名称为必填项' })
   @Prop({ required: true })
   name: string;
 

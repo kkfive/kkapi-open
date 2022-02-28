@@ -44,13 +44,13 @@ export class UserController {
 
   @NoAuth()
   @Get('init')
-  async initUser(@Body() body, @Query() query, @Request() req) {
+  async initUser(@Query() query) {
     const users = await this.userService.findAll();
     if (users.length > 0) {
       return new ErrorModal(null, '存在用户，初始化失败');
     } else {
       const user = await this.userService.createOne({
-        userName: query.userName || body.userName,
+        userName: query.userName || 'admin',
       });
 
       return new SuccessModal(user);

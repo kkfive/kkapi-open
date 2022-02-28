@@ -40,14 +40,14 @@ let UserController = class UserController {
     async userGetId(req) {
         return new Response_modal_1.SuccessModal({ id: req.user.userId });
     }
-    async initUser(body, query, req) {
+    async initUser(query) {
         const users = await this.userService.findAll();
         if (users.length > 0) {
             return new Response_modal_1.ErrorModal(null, '存在用户，初始化失败');
         }
         else {
             const user = await this.userService.createOne({
-                userName: query.userName || body.userName,
+                userName: query.userName || 'admin',
             });
             return new Response_modal_1.SuccessModal(user);
         }
@@ -129,11 +129,9 @@ __decorate([
 __decorate([
     (0, customize_1.NoAuth)(),
     (0, common_1.Get)('init'),
-    __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Query)()),
-    __param(2, (0, common_1.Request)()),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "initUser", null);
 __decorate([

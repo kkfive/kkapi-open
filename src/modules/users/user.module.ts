@@ -1,6 +1,6 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserController } from './controller/user.comtroller';
+import { UserController } from './controller/user.controller';
 import { UserService } from './services/user.service';
 import { UserSchema, User } from './schema/user.schema';
 import { AuthModule } from 'src/modules/auth/auth.module';
@@ -9,7 +9,7 @@ import { OauthService } from './services/oauth.service';
 import { UserModelName } from 'src/constant/model-name';
 import { TokenSchema } from './schema/token.schema';
 import { TokenService } from './services/token.service';
-import { TokenController } from './controller/token.comtroller';
+import { TokenController } from './controller/token.controller';
 
 @Module({
   imports: [

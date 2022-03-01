@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const user_comtroller_1 = require("./controller/user.comtroller");
+const user_controller_1 = require("./controller/user.controller");
 const user_service_1 = require("./services/user.service");
 const user_schema_1 = require("./schema/user.schema");
 const auth_module_1 = require("../auth/auth.module");
@@ -18,7 +18,7 @@ const oauth_service_1 = require("./services/oauth.service");
 const model_name_1 = require("../../constant/model-name");
 const token_schema_1 = require("./schema/token.schema");
 const token_service_1 = require("./services/token.service");
-const token_comtroller_1 = require("./controller/token.comtroller");
+const token_controller_1 = require("./controller/token.controller");
 let UserModule = class UserModule {
 };
 UserModule = __decorate([
@@ -31,7 +31,7 @@ UserModule = __decorate([
                 { name: model_name_1.UserModelName.Token, schema: token_schema_1.TokenSchema, collection: model_name_1.UserModelName.Token },
             ]),
         ],
-        controllers: [user_comtroller_1.UserController, token_comtroller_1.TokenController],
+        controllers: [user_controller_1.UserController, token_controller_1.TokenController],
         providers: [user_service_1.UserService, oauth_service_1.OauthService, token_service_1.TokenService],
         exports: [user_service_1.UserService, token_service_1.TokenService],
     })

@@ -175,4 +175,4 @@ UserController = __decorate([
         oauth_service_1.OauthService])
 ], UserController);
 exports.UserController = UserController;
-//# sourceMappingURL=user.comtroller.js.map
+//# sourceMappingURL=user.controller.js.map

@@ -98,4 +98,4 @@ TokenController = __decorate([
     __metadata("design:paramtypes", [token_service_1.TokenService])
 ], TokenController);
 exports.TokenController = TokenController;
-//# sourceMappingURL=token.comtroller.js.map
+//# sourceMappingURL=token.controller.js.map

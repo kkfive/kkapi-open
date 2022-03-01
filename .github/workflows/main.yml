@@ -37,21 +37,20 @@ jobs:
         run: |
           export TZ='Asia/Shanghai'
           yarn install
+
       - name: 5. 开始构建
         run: |
+          export TZ='Asia/Shanghai'
           yarn run build
-      - name: 6. 推送产物
-        #  git push --force --all https://${{ secrets.GITEE_TOKEN }}@${{ secrets.GITEE_REPO }}
-        run: |
-          cp ./vercel.json dist
-          cp ./package.json dist
-          cp ./yarn.lock dist
-          cd ./dist
-          ls
-          git init
-          git config --global user.name '${{ secrets.GIT_USER }}'
-          git config --global user.email '${{ secrets.GIT_MAIL }}'
-          git add .
-          git commit -m "Update"
-          git push --force --all https://${{ secrets.BIT_TOKEN }}@${{ secrets.BIT_REPO }}
-          cd ..
+          node deploy.js
+          cp package.json ./dist/
+
+      - name: 6. 推送到vercel分支
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: vercel
+          publish_dir: ./dist
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          full_commit_message: ${{ github.event.head_commit.message }}

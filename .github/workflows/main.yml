@@ -40,6 +40,7 @@ jobs:
 
       - name: 5. 开始构建
         run: |
+          export TZ='Asia/Shanghai'
           yarn run build
           node deploy.js
           cp package.json ./dist/

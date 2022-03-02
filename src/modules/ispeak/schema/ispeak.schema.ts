@@ -6,7 +6,7 @@ import { IspeakTag } from './ipseakTag.schema';
 
 export type IspeakDocument = Ispeak & Document;
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: { updatedAt: 'updateAt', createdAt: 'createAt' } })
 export class Ispeak {
   /**
    * 标题
@@ -47,6 +47,11 @@ export class Ispeak {
    */
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: UserModelName.User, required: true })
   author: string;
+
+  @Prop()
+  updateAt: Date;
+  @Prop()
+  createAt: Date;
 }
 
 export const IspeakSchema = SchemaFactory.createForClass(Ispeak);

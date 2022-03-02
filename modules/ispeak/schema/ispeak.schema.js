@@ -22,6 +22,8 @@ let Ispeak = class Ispeak {
     tag;
     showComment;
     author;
+    updateAt;
+    createAt;
 };
 __decorate([
     (0, mongoose_1.Prop)({ type: String, default: '' }),
@@ -55,8 +57,16 @@ __decorate([
     (0, mongoose_1.Prop)({ type: mongoose.Schema.Types.ObjectId, ref: model_name_1.UserModelName.User, required: true }),
     __metadata("design:type", String)
 ], Ispeak.prototype, "author", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Date)
+], Ispeak.prototype, "updateAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Date)
+], Ispeak.prototype, "createAt", void 0);
 Ispeak = __decorate([
-    (0, mongoose_1.Schema)({ timestamps: true })
+    (0, mongoose_1.Schema)({ timestamps: { updatedAt: 'updateAt', createdAt: 'createAt' } })
 ], Ispeak);
 exports.Ispeak = Ispeak;
 exports.IspeakSchema = mongoose_1.SchemaFactory.createForClass(Ispeak);

@@ -5,7 +5,7 @@ import { UserModelName } from 'src/constant/model-name';
 
 export type TokenDocument = Token & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Token {
   /**
    * token标题
@@ -24,11 +24,6 @@ export class Token {
    */
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: UserModelName.User, required: true })
   user: string;
-  /**
-   * 创建时间
-   */
-  @Prop({ type: Date, default: Date.now() })
-  createAt: Date;
 }
 
 export const TokenSchema = SchemaFactory.createForClass(Token);

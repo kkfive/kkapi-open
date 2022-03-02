@@ -6,7 +6,7 @@ import { IspeakTag } from './ipseakTag.schema';
 
 export type IspeakDocument = Ispeak & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Ispeak {
   /**
    * 标题
@@ -47,16 +47,11 @@ export class Ispeak {
    */
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: UserModelName.User, required: true })
   author: string;
-  /**
-   * 创建时间
-   */
-  @Prop({ type: Date, default: Date.now() })
-  createAt: Date;
-  /**
-   * 最后修改时间
-   */
-  @Prop({ type: Date, default: Date.now() })
-  updateAt: Date;
+
+  @Prop()
+  updatedAt: Date;
+  @Prop()
+  createdAt: Date;
 }
 
 export const IspeakSchema = SchemaFactory.createForClass(Ispeak);

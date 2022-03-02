@@ -49,7 +49,7 @@ export class Post {
    * 当前记录创建创建时间
    */
   @Prop({ default: Date.now() })
-  createAt: Date;
+  createdAt: Date;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

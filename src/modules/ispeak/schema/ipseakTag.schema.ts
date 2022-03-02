@@ -5,7 +5,7 @@ import { UserModelName } from 'src/constant/model-name';
 
 export type IspeakTagDocument = IspeakTag & mongoose.Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class IspeakTag {
   /**
    * 标签名称
@@ -37,12 +37,6 @@ export class IspeakTag {
    */
   @Prop({ default: '' })
   description: string;
-
-  /**
-   * 创建时间
-   */
-  @Prop({ type: Date, default: Date.now() })
-  createAt: Date;
 }
 
 export const IspeakTagSchema = SchemaFactory.createForClass(IspeakTag);

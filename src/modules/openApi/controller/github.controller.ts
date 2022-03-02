@@ -26,17 +26,22 @@ export class OpenApiGithubController {
         event_type,
       },
       headers: {
-        Authorization: token,
+        Authorization: 'Bearer ' + token,
       },
       method: 'POST',
     });
+
     if (result.headers) {
-      const remaining = result.headers['X-RateLimit-Remaining'];
       return new SuccessModal(
         {
-          'X-RateLimit-Remaining': remaining,
+          'x-oauth-scopes': result.headers['x-oauth-scopes'],
+          'x-ratelimit-limit': result.headers['x-ratelimit-limit'],
+          'x-ratelimit-remaining': result.headers['x-ratelimit-remaining'],
+          'x-ratelimit-reset': result.headers['x-ratelimit-reset'],
+          'x-ratelimit-resource': result.headers['x-ratelimit-resource'],
+          'x-ratelimit-used': result.headers['x-ratelimit-used'],
         },
-        `请求成功！请跳转链接查看：https://github.com/${owner}/${repo}/actions`,
+        `请求成功!请跳转链接查看:https://github.com/${owner}/${repo}/actions`,
       );
     } else {
       return new ErrorModal(null, '请求失败', 500);

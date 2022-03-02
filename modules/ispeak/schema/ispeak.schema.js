@@ -22,8 +22,8 @@ let Ispeak = class Ispeak {
     tag;
     showComment;
     author;
-    updateAt;
-    createAt;
+    updatedAt;
+    createdAt;
 };
 __decorate([
     (0, mongoose_1.Prop)({ type: String, default: '' }),
@@ -60,13 +60,13 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
-], Ispeak.prototype, "updateAt", void 0);
+], Ispeak.prototype, "updatedAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
-], Ispeak.prototype, "createAt", void 0);
+], Ispeak.prototype, "createdAt", void 0);
 Ispeak = __decorate([
-    (0, mongoose_1.Schema)({ timestamps: { updatedAt: 'updateAt', createdAt: 'createAt' } })
+    (0, mongoose_1.Schema)({ timestamps: true })
 ], Ispeak);
 exports.Ispeak = Ispeak;
 exports.IspeakSchema = mongoose_1.SchemaFactory.createForClass(Ispeak);

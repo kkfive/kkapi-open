@@ -19,7 +19,7 @@ let Post = class Post {
     rule;
     updated;
     created;
-    createAt;
+    createdAt;
 };
 __decorate([
     (0, mongoose_1.Prop)(),
@@ -52,7 +52,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ default: Date.now() }),
     __metadata("design:type", Date)
-], Post.prototype, "createAt", void 0);
+], Post.prototype, "createdAt", void 0);
 Post = __decorate([
     (0, mongoose_1.Schema)()
 ], Post);

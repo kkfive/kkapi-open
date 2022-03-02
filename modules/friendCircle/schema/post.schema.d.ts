@@ -7,7 +7,7 @@ export declare class Post {
     rule: string;
     updated: Date;
     created: Date;
-    createAt: Date;
+    createdAt: Date;
 }
 export declare const PostSchema: mongoose.Schema<mongoose.Document<Post, any, any>, mongoose.Model<mongoose.Document<Post, any, any>, any, any, any>, any, any>;
 export declare type PostDocument = Post & mongoose.Document;

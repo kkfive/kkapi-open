@@ -8,7 +8,5 @@ export declare class Ispeak {
     tag: IspeakTag;
     showComment: string;
     author: string;
-    createAt: Date;
-    updateAt: Date;
 }
 export declare const IspeakSchema: mongoose.Schema<mongoose.Document<Ispeak, any, any>, mongoose.Model<mongoose.Document<Ispeak, any, any>, any, any, any>, any, any>;

@@ -6,6 +6,5 @@ export declare class IspeakTag {
     user: mongoose.Schema.Types.ObjectId;
     orderNo: number;
     description: string;
-    createAt: Date;
 }
 export declare const IspeakTagSchema: mongoose.Schema<mongoose.Document<IspeakTag, any, any>, mongoose.Model<mongoose.Document<IspeakTag, any, any>, any, any, any>, any, any>;

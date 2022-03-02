@@ -18,7 +18,6 @@ let Token = class Token {
     title;
     value;
     user;
-    createAt;
 };
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: '请为token添加标题哦！' }),
@@ -34,12 +33,8 @@ __decorate([
     (0, mongoose_1.Prop)({ type: mongoose.Schema.Types.ObjectId, ref: model_name_1.UserModelName.User, required: true }),
     __metadata("design:type", String)
 ], Token.prototype, "user", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: Date, default: Date.now() }),
-    __metadata("design:type", Date)
-], Token.prototype, "createAt", void 0);
 Token = __decorate([
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({ timestamps: true })
 ], Token);
 exports.Token = Token;
 exports.TokenSchema = mongoose_1.SchemaFactory.createForClass(Token);

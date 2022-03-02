@@ -11,7 +11,6 @@ export declare class User extends mongoose.Document {
     status: string;
     speakToken: string;
     githubId: string;
-    createTime: Date;
 }
 export declare type UserDocument = User & mongoose.Document;
 export declare const UserSchema: mongoose.Schema<User, mongoose.Model<User, any, any, any>, any, any>;

@@ -20,7 +20,6 @@ let IspeakTag = class IspeakTag {
     user;
     orderNo;
     description;
-    createAt;
 };
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: '标签名称为必填项' }),
@@ -43,12 +42,8 @@ __decorate([
     (0, mongoose_1.Prop)({ default: '' }),
     __metadata("design:type", String)
 ], IspeakTag.prototype, "description", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: Date, default: Date.now() }),
-    __metadata("design:type", Date)
-], IspeakTag.prototype, "createAt", void 0);
 IspeakTag = __decorate([
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({ timestamps: true })
 ], IspeakTag);
 exports.IspeakTag = IspeakTag;
 exports.IspeakTagSchema = mongoose_1.SchemaFactory.createForClass(IspeakTag);

@@ -24,7 +24,6 @@ let User = class User extends mongoose.Document {
     status;
     speakToken;
     githubId;
-    createTime;
 };
 __decorate([
     (0, mongoose_1.Prop)({ default: '' }),
@@ -70,12 +69,8 @@ __decorate([
     (0, mongoose_1.Prop)({ default: '' }),
     __metadata("design:type", String)
 ], User.prototype, "githubId", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: Date.now() }),
-    __metadata("design:type", Date)
-], User.prototype, "createTime", void 0);
 User = __decorate([
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({ timestamps: true })
 ], User);
 exports.User = User;
 exports.UserSchema = mongoose_1.SchemaFactory.createForClass(User);

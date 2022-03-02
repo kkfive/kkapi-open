@@ -56,8 +56,8 @@ export class IspeakController {
           } else {
             returnObj.items.push({
               _id: item._id,
-              updateAt: item.updateAt,
-              createAt: item.createAt,
+              updatedAt: item.updatedAt,
+              createdAt: item.createdAt,
               author: item.author,
               type: '1',
               content: '该内容需登录后查看',
@@ -70,8 +70,8 @@ export class IspeakController {
           } else {
             returnObj.items.push({
               _id: item._id,
-              updateAt: item.updateAt,
-              createAt: item.createAt,
+              updatedAt: item.updatedAt,
+              createdAt: item.createdAt,
               type: '2',
               content: '该内容仅作者可见',
               title: '',

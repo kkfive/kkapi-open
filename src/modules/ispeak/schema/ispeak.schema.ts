@@ -6,7 +6,7 @@ import { IspeakTag } from './ipseakTag.schema';
 
 export type IspeakDocument = Ispeak & Document;
 
-@Schema({ timestamps: { updatedAt: 'updateAt', createdAt: 'createAt' } })
+@Schema({ timestamps: true })
 export class Ispeak {
   /**
    * 标题
@@ -49,9 +49,9 @@ export class Ispeak {
   author: string;
 
   @Prop()
-  updateAt: Date;
+  updatedAt: Date;
   @Prop()
-  createAt: Date;
+  createdAt: Date;
 }
 
 export const IspeakSchema = SchemaFactory.createForClass(Ispeak);

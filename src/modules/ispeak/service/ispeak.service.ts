@@ -70,8 +70,8 @@ export class IspeakService {
       {
         $project: {
           _id: 1,
-          updateAt: 1,
-          createAt: 1,
+          updatedAt: 1,
+          createdAt: 1,
           type: 1,
           content: 1,
           title: 1,
@@ -83,7 +83,7 @@ export class IspeakService {
       {
         $facet: {
           total: [{ $count: 'total' }],
-          items: [{ $sort: { createAt: -1 } }, { $skip: (page - 1) * limit }, { $limit: limit }],
+          items: [{ $sort: { createdAt: -1 } }, { $skip: (page - 1) * limit }, { $limit: limit }],
         },
       },
     ]);

@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 
-@Schema()
+@Schema({ timestamps: true })
 export class User extends mongoose.Document {
   @Prop({ default: '' })
   userName: string; // 用户名
@@ -34,9 +34,6 @@ export class User extends mongoose.Document {
 
   @Prop({ default: '' })
   githubId: string;
-
-  @Prop({ default: Date.now() })
-  createTime: Date;
 }
 export type UserDocument = User & mongoose.Document;
 export const UserSchema = SchemaFactory.createForClass(User);

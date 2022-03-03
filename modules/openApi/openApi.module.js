@@ -21,6 +21,8 @@ const qq_service_1 = require("./service/qq.service");
 const github_service_1 = require("./service/github.service");
 const telegram_service_1 = require("./service/telegram.service");
 const wechat_service_1 = require("./service/wechat.service");
+const notice_controller_1 = require("./controller/notice.controller");
+const notice_service_1 = require("./service/notice.service");
 let OpenApiModule = class OpenApiModule {
 };
 OpenApiModule = __decorate([
@@ -32,6 +34,7 @@ OpenApiModule = __decorate([
             github_controller_1.OpenApiGithubController,
             telegram_conroller_1.OpenApiTelegramController,
             wechat_controller_1.OpenApiWechatController,
+            notice_controller_1.OpenApiNoticeController,
         ],
         providers: [
             http_service_1.OpenApiHttpService,
@@ -39,6 +42,7 @@ OpenApiModule = __decorate([
             github_service_1.OpenApiGithubService,
             telegram_service_1.OpenApiTelegramService,
             wechat_service_1.OpenApiWechatService,
+            notice_service_1.OpenApiNoticeService,
         ],
         exports: [
             http_service_1.OpenApiHttpService,
@@ -46,6 +50,7 @@ OpenApiModule = __decorate([
             github_service_1.OpenApiGithubService,
             telegram_service_1.OpenApiTelegramService,
             wechat_service_1.OpenApiWechatService,
+            notice_service_1.OpenApiNoticeService,
         ],
     })
 ], OpenApiModule);

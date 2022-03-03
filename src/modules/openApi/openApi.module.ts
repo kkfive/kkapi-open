@@ -12,6 +12,8 @@ import { OpenApiQQService } from './service/qq.service';
 import { OpenApiGithubService } from './service/github.service';
 import { OpenApiTelegramService } from './service/telegram.service';
 import { OpenApiWechatService } from './service/wechat.service';
+import { OpenApiNoticeController } from './controller/notice.controller';
+import { OpenApiNoticeService } from './service/notice.service';
 @Module({
   imports: [HttpModule, forwardRef(() => AuthModule), MongooseModule.forFeature([])],
   controllers: [
@@ -20,6 +22,7 @@ import { OpenApiWechatService } from './service/wechat.service';
     OpenApiGithubController,
     OpenApiTelegramController,
     OpenApiWechatController,
+    OpenApiNoticeController,
   ],
   providers: [
     OpenApiHttpService,
@@ -27,6 +30,7 @@ import { OpenApiWechatService } from './service/wechat.service';
     OpenApiGithubService,
     OpenApiTelegramService,
     OpenApiWechatService,
+    OpenApiNoticeService,
   ],
   exports: [
     OpenApiHttpService,
@@ -34,6 +38,7 @@ import { OpenApiWechatService } from './service/wechat.service';
     OpenApiGithubService,
     OpenApiTelegramService,
     OpenApiWechatService,
+    OpenApiNoticeService,
   ],
 })
 export class OpenApiModule {}

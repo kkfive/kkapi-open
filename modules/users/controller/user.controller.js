@@ -70,7 +70,7 @@ let UserController = class UserController {
         return new Response_modal_1.SuccessModal(res);
     }
     async updateUserInfo(body, req) {
-        const { avatar, desc, email, homePath, link, nickName, userName } = body;
+        const { avatar, desc, email, homePath, link, nickName, userName, githubId } = body;
         const result = await this.userService.updateOne({ _id: req.user.userId }, {
             avatar,
             desc,
@@ -79,6 +79,7 @@ let UserController = class UserController {
             link,
             nickName,
             userName,
+            githubId,
         });
         if (result.acknowledged && result.modifiedCount === 1) {
             return new Response_modal_1.SuccessModal(result, '更新成功');

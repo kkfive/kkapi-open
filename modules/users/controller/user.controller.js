@@ -112,6 +112,25 @@ let UserController = class UserController {
             return new Response_modal_1.ErrorModal(null, '修改失败');
         }
     }
+    async githubOAuth(query) {
+        if (query.code) {
+            const access_token = await this.oauthService.githubLogin(query.code);
+            if (!access_token)
+                return new Response_modal_1.ErrorModal({}, '服务器内部错误，获取GitHub access_token失败');
+            const githubUserInfo = await this.oauthService.getUserInfoByGithubToken(access_token.access_token);
+            if (githubUserInfo.type !== 'User')
+                return new Response_modal_1.ErrorModal(null, '授权失败');
+            if (githubUserInfo.id) {
+                const localUserInfo = await this.userService.findOne({ githubId: githubUserInfo.id });
+                const jwt = await this.authService.login(localUserInfo && localUserInfo._id ? localUserInfo : { userName: 'Github', _id: '0' });
+                return new Response_modal_1.SuccessModal({ token: jwt, userId: localUserInfo?._id || '0' });
+            }
+        }
+        else {
+            console.log('query:', query);
+            return new Response_modal_1.ErrorModal(null, '缺少code参数');
+        }
+    }
 };
 __decorate([
     (0, common_1.Get)('/'),
@@ -167,6 +186,14 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "changePassword", null);
+__decorate([
+    (0, customize_1.NoAuth)(),
+    (0, common_1.Get)('oauth/github'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "githubOAuth", null);
 UserController = __decorate([
     (0, common_1.Controller)('/user'),
     __metadata("design:paramtypes", [user_service_1.UserService,

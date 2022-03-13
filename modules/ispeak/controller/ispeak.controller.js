@@ -51,6 +51,7 @@ let IspeakController = class IspeakController {
         const returnObj = {
             total: 0,
             items: [],
+            isLogin: req.user && req.user.userId ? req.user.userId : null,
         };
         result.forEach((res) => {
             returnObj.total = res.total ? res.total[0]?.total : 0;

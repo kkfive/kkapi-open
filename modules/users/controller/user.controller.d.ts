@@ -16,4 +16,5 @@ export declare class UserController {
     getUserInfo(req: any): Promise<SuccessModal>;
     updateUserInfo(body: any, req: any): Promise<SuccessModal | ErrorModal>;
     changePassword(req: any, body: any): Promise<SuccessModal | ErrorModal>;
+    githubOAuth(query: any): Promise<SuccessModal | ErrorModal>;
 }

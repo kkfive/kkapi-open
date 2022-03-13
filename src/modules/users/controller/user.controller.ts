@@ -128,4 +128,29 @@ export class UserController {
       return new ErrorModal(null, '修改失败');
     }
   }
+
+  // Github登录
+  @NoAuth()
+  @Get('oauth/github')
+  async githubOAuth(@Query() query): Promise<SuccessModal | ErrorModal> {
+    if (query.code) {
+      const access_token = await this.oauthService.githubLogin(query.code);
+      if (!access_token) return new ErrorModal({}, '服务器内部错误，获取GitHub access_token失败');
+      const githubUserInfo = await this.oauthService.getUserInfoByGithubToken(
+        access_token.access_token,
+      );
+      if (githubUserInfo.type !== 'User') return new ErrorModal(null, '授权失败');
+      if (githubUserInfo.id) {
+        const localUserInfo = await this.userService.findOne({ githubId: githubUserInfo.id });
+        const jwt = await this.authService.login(
+          localUserInfo && localUserInfo._id ? localUserInfo : { userName: 'Github', _id: '0' },
+        );
+
+        return new SuccessModal({ token: jwt, userId: localUserInfo?._id || '0' });
+      }
+    } else {
+      console.log('query:', query);
+      return new ErrorModal(null, '缺少code参数');
+    }
+  }
 }

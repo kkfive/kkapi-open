@@ -3,7 +3,10 @@ import { UserService } from '../users/services/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/modules/users/schema/user.schema';
 import { bcryptValidate } from 'src/common/encription';
-
+export interface payloadType {
+  userName: string;
+  _id: string;
+}
 @Injectable()
 export class AuthService {
   constructor(
@@ -23,7 +26,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: User) {
+  async login(user: payloadType | User) {
     const payload = {
       userName: user.userName,
       userId: user._id,

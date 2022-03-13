@@ -83,7 +83,7 @@ export class UserController {
   }
   @Patch('update')
   async updateUserInfo(@Body() body, @Request() req) {
-    const { avatar, desc, email, homePath, link, nickName, userName } = body;
+    const { avatar, desc, email, homePath, link, nickName, userName, githubId } = body;
     const result = await this.userService.updateOne(
       { _id: req.user.userId },
       {
@@ -94,6 +94,7 @@ export class UserController {
         link,
         nickName,
         userName,
+        githubId,
       },
     );
     if (result.acknowledged && result.modifiedCount === 1) {

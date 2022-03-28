@@ -26,6 +26,7 @@ let OpenApiHttpController = class OpenApiHttpController {
         this.openApiHttpService = openApiHttpService;
     }
     async requestCors(query, res) {
+        return res.send(new Response_modal_1.ErrorModal(null, '如需使用，请自行注释此行'));
         const { url } = query;
         if (url) {
             const result = await this.openApiHttpService.requestCors(url);

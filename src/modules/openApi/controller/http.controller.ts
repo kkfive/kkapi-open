@@ -14,8 +14,8 @@ export class OpenApiHttpController {
   @NoAuth()
   @Get('cors')
   async requestCors(@Query() query, @Response() res) {
+    return res.send(new ErrorModal(null, '如需使用，请自行注释此行'));
     const { url } = query;
-
     if (url) {
       const result = await this.openApiHttpService.requestCors(url);
       res.end(Buffer.from(result.data, result.headers['content-type'] as any));

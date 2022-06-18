@@ -23,12 +23,14 @@ const telegram_service_1 = require("./service/telegram.service");
 const wechat_service_1 = require("./service/wechat.service");
 const notice_controller_1 = require("./controller/notice.controller");
 const notice_service_1 = require("./service/notice.service");
+const api_controller_1 = require("./controller/api.controller");
 let OpenApiModule = class OpenApiModule {
 };
 OpenApiModule = __decorate([
     (0, common_1.Module)({
         imports: [axios_1.HttpModule, (0, common_1.forwardRef)(() => auth_module_1.AuthModule), mongoose_1.MongooseModule.forFeature([])],
         controllers: [
+            api_controller_1.OpenApiController,
             qq_controller_1.OpenApiQQController,
             http_controller_1.OpenApiHttpController,
             github_controller_1.OpenApiGithubController,

@@ -1,6 +1,7 @@
 {
   "name": "kkapi-api-open",
   "version": "0.0.1",
+  "date": "2022-06-18",
   "description": "api服务",
   "author": "DreamyTZK",
   "private": true,
@@ -40,7 +41,7 @@
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "pushoo": "^0.0.3",
+    "pushoo": "^0.0.10",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.4",

@@ -14,9 +14,11 @@ import { OpenApiTelegramService } from './service/telegram.service';
 import { OpenApiWechatService } from './service/wechat.service';
 import { OpenApiNoticeController } from './controller/notice.controller';
 import { OpenApiNoticeService } from './service/notice.service';
+import { OpenApiController } from './controller/api.controller';
 @Module({
   imports: [HttpModule, forwardRef(() => AuthModule), MongooseModule.forFeature([])],
   controllers: [
+    OpenApiController,
     OpenApiQQController,
     OpenApiHttpController,
     OpenApiGithubController,

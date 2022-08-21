@@ -193,6 +193,7 @@ export class IspeakController {
     return new SuccessModal(res);
   }
 
+  @NoAuth()
   @Get('/get/:id')
   async getOneSpeak1(@Param() param) {
     const res = await this.ispeakService.findOne({ _id: param.id });

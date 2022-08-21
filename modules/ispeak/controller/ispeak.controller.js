@@ -250,6 +250,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], IspeakController.prototype, "deleteOneSpeak", null);
 __decorate([
+    (0, customize_1.NoAuth)(),
     (0, common_1.Get)('/get/:id'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
